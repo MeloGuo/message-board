@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import MessagesContainer from "./components/MessagesContainer";
+import InputMessage from "./components/InputMessage";
+import { IMessage } from "./components/Message";
 
 const App: React.FC = () => {
+  const [message, setMessage] = useState<IMessage>();
+
+  const handleSubmit = (message: IMessage) => {
+    console.log('handleSubmit: ', message);
+    setMessage(message)};
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <InputMessage onSubmit={handleSubmit} />
+      <MessagesContainer message={message} />
     </div>
   );
-}
+};
 
 export default App;
